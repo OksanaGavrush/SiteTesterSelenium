@@ -1,6 +1,9 @@
+import pytest
+
 from SiteTesterSelenium.tests.data import search_data_for_tests
 
 
+@pytest.mark.smoke
 def test_user_follow_functionality(home_page, user_page, search_page, setup):
     home_page.open()
     search_page.search_for_images(search_data_for_tests.search_images_words_different_format)
@@ -10,6 +13,7 @@ def test_user_follow_functionality(home_page, user_page, search_page, setup):
     user_page.verify_following_status()
 
 
+@pytest.mark.regression
 def test_email_delivery(home_page, user_page, search_page, setup):
     home_page.open()
     search_page.search_for_images(search_data_for_tests.search_images_words_different_format)
