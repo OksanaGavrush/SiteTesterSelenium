@@ -21,7 +21,7 @@ permissions:
 jobs:
   run-tests:
     runs-on: ubuntu-latest
-    name: Тесты
+    name: Tests
     steps:
       - name: Getting the source repository
         uses: actions/checkout@v4
