@@ -27,8 +27,8 @@ class HomePage(BasePage):
     def clicking_random_image(self):
         images = self.find_all(loc.IMAGES)
         random_index = random.randint(1, len(images))
-        WebDriverWait(self.driver, 10).until(
-                     ec.element_to_be_clickable((By.XPATH, f'(//figure[@itemprop="image"])[{random_index}]'))).click()
+        WebDriverWait(self.driver, 10).until(ec.element_to_be_clickable
+                                             ((By.XPATH, f'(//figure[@itemprop="image"])[{random_index}]'))).click()
 
     @allure.step("Like the image")
     def like_the_image(self):
@@ -61,15 +61,13 @@ class HomePage(BasePage):
     @allure.step("Verify the burger menu is opened")
     def verify_burger_menu_opened(self):
         burger_button = WebDriverWait(self.driver, 10).until(
-            ec.visibility_of_element_located(loc.BURGER_MENU_BUTTON)
-        )
+            ec.visibility_of_element_located(loc.BURGER_MENU_BUTTON))
         aria_expanded = burger_button.get_attribute('aria-expanded')
         assert aria_expanded == 'true', f"Expected 'aria-expanded' to be 'true', got '{aria_expanded}'"
 
     @allure.step("Select language")
     def select_language(self):
-        WebDriverWait(self.driver, 10).until(
-                     ec.element_to_be_clickable(loc.LANGUAGE_SELECTOR)).click()
+        WebDriverWait(self.driver, 10).until(ec.element_to_be_clickable(loc.LANGUAGE_SELECTOR)).click()
         WebDriverWait(self.driver, 5).until(ec.element_to_be_clickable(loc.SPANISH_LANGUAGE_OPTION)).click()
 
     @allure.step("Verify language change")

@@ -49,8 +49,8 @@ class ProfilePageLocators:
     NEW_IMAGE_SELECTOR = (By.CSS_SELECTOR, "img.upload-circular__image")
     CHANGE_PROFILE_IMAGE = (By.XPATH, '//p[text() = "Change profile image"]')
     FILE_INPUT_SELECTOR = (By.CSS_SELECTOR, "input[type='file']")
-    ERROR_MESSAGE_SELECTOR = (
-    By.XPATH, '//div[contains(@class, "flash__message") and contains(text(), "image must be")]')
+    ERROR_MESSAGE_SELECTOR = (By.XPATH, '//div[contains(@class, "flash__message")'
+                                        ' and contains(text(), "image must be")]')
     TAG_INPUT_FIELD_SELECTOR = (By.CSS_SELECTOR, '#user_interests_tag')
     TAG_SPAN_SELECTOR = (By.CSS_SELECTOR, 'span.tag > span')
     REMOVING_TAG_SELECTOR = (By.CSS_SELECTOR, '[title="Removing tag"]')

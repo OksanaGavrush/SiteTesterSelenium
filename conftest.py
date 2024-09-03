@@ -10,7 +10,6 @@ from SiteTesterSelenium.pages.profile_page import ProfilePage
 from SiteTesterSelenium.pages.search_page import SearchPage
 from SiteTesterSelenium.pages.user_page import UserPage
 from dotenv import load_dotenv
-import os
 
 
 load_dotenv()

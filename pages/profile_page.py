@@ -124,8 +124,7 @@ class ProfilePage(BasePage):
         file_input.send_keys(image_path)
         error_message = WebDriverWait(self.driver, 10).until(
             ec.visibility_of_element_located(loc.ERROR_MESSAGE_SELECTOR))
-        assert (
-                    "Profile image must be less than 1MB. Try reducing the size of image." in error_message.text),\
+        assert ("Profile image must be less than 1MB. Try reducing the size of image." in error_message.text), \
             "Error message not displayed or incorrect."
 
     @allure.step("Add hobbies as tags")
