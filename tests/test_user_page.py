@@ -16,10 +16,3 @@ def test_email_delivery(home_page, user_page, search_page, setup):
     message = 'Hello!' * 200
     user_page.enter_message_in_textarea(message)
     user_page.verify_message_length()
-
-
-
-
-
-
-

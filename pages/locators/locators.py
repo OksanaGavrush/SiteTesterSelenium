@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 
 class HomePageLocators:
     IMAGES = (By.XPATH, '//figure[@itemprop="image"]')
-    HOMEPAGE_URL = 'https://unsplash.com/'
+    HOMEPAGE_URL = 'https://unsplash.com'
     SEARCH_INPUT = (By.XPATH, '(//input[@type="search"])[1]')
     LIKE_BUTTON_SELECTOR = (By.CSS_SELECTOR, 'button[title="Like this image"]')
     LIKE_BUTTON = By.CSS_SELECTOR, '.ztgo2 svg[class="O2bBF"]'
@@ -29,6 +29,7 @@ class SearchPageLocators:
     RADIO_BUTTON = (By.CSS_SELECTOR, 'input[type="radio"][value="month"]')
     GET_UNSPLASH = (By.XPATH, '//a[text()="Get Unsplash+"]')
     GET_UNSPLASH_PLUS = (By.CSS_SELECTOR, '[data-test="get-unsplash-plus"]')
+
 
 class ProfilePageLocators:
     PERSONAL_MENU_BUTTON = (By.CSS_SELECTOR, 'button[title="Your personal menu button"]')

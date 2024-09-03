@@ -31,6 +31,3 @@ class SearchPage(BasePage):
     def check_button_to_upgrade(self):
         self.find(loc.GET_UNSPLASH).click()
         assert self.driver.current_url == 'https://unsplash.com/plus'
-
-
-

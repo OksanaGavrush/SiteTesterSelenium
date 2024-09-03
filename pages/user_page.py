@@ -62,5 +62,3 @@ class UserPage(BasePage):
         entered_text = textarea_element.get_attribute('value')
         max_length = int(textarea_element.get_attribute('maxlength'))
         assert len(entered_text) <= max_length, "Text length exceeds the maximum allowed length."
-
-

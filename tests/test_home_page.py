@@ -53,8 +53,3 @@ def test_view_notifications(home_page, setup):
     home_page.open()
     home_page.open_notifications()
     home_page.click_highlights_button()
-
-
-
-
-

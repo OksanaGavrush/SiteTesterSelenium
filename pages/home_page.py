@@ -9,9 +9,7 @@ from SiteTesterSelenium.pages.locators.locators import HomePageLocators as loc
 
 
 class HomePage(BasePage):
-    @allure.step('Open the page')
-    def open(self):
-        self.driver.get(loc.HOMEPAGE_URL)
+    relative_url = "/"
 
     @allure.step("Find and click on the search input")
     def click_search_input(self):
@@ -27,7 +25,7 @@ class HomePage(BasePage):
 
     @allure.step("Select a random image")
     def clicking_random_image(self):
-        images = self.find_oll(loc.IMAGES)
+        images = self.find_all(loc.IMAGES)
         random_index = random.randint(5, len(images))
         WebDriverWait(self.driver, 10).until(
                      ec.element_to_be_clickable((By.XPATH, f'(//figure[@itemprop="image"])[{random_index}]'))).click()
@@ -123,5 +121,3 @@ class HomePage(BasePage):
         activity_button = WebDriverWait(self.driver, 10).until(ec.presence_of_element_located(loc.ACTIVITY_BUTTON))
         assert activity_button is not None, "Activity button should be present before clicking the Highlights button"
         WebDriverWait(self.driver, 10).until(ec.element_to_be_clickable(loc.HIGHLIGHTS_BUTTON)).click()
-
-

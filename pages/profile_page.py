@@ -10,7 +10,6 @@ from SiteTesterSelenium.pages.locators.locators import ProfilePageLocators as lo
 
 
 class ProfilePage(BasePage):
-    relative_url = '/@doe69059'
 
     @staticmethod
     def generate_random_name(length=10):
@@ -254,7 +253,8 @@ class ProfilePage(BasePage):
 
     @allure.step("Deleting a collection")
     def delete_collection(self, collections_before):
-        WebDriverWait(self.driver, 10).until(ec.element_to_be_clickable(loc.EDIT_COLLECTION_BUTTON_SELECTOR)).click()
+        WebDriverWait(self.driver, 10).until(ec.element_to_be_clickable
+                                             (loc.EDIT_COLLECTION_BUTTON_SELECTOR)).click()
         self.driver.find_element(*loc.DELETE_COLLECTION_BUTTON_SELECTOR).click()
         self.driver.find_element(*loc.CONFIRM_DELETE_BUTTON_SELECTOR).click()
         collections_after_delete = self.get_collections()

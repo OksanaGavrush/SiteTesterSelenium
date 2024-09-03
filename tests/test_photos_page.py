@@ -42,10 +42,3 @@ def test_link_pinterest(home_page, photo_page, setup):
     home_page.open()
     photo_page.wait_for_images_select_and_click()
     photo_page.share_on_pinterest()
-
-
-
-
-
-
-

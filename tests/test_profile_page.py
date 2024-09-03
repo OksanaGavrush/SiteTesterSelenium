@@ -111,6 +111,3 @@ def test_delete_photo_collection(home_page, profile_page, setup):
     collections = profile_page.get_collections()
     profile_page.click_random_collection(collections)
     profile_page.delete_collection(collections)
-
-
-

@@ -13,14 +13,12 @@ from dotenv import load_dotenv
 import os
 
 
-# Загрузка переменных из .env файла
 load_dotenv()
 
 
 @pytest.fixture
 def driver():
     options = Options()
-    options.add_argument("/Users/<John Doe>/Library/Application Support/Google/Chrome/")
     driver = webdriver.Chrome(options=options)
     yield driver
     driver.quit()

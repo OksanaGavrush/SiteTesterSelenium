@@ -59,8 +59,7 @@ class PhotoPage(BasePage):
     @allure.step("Wait for images and select a random one")
     def wait_for_images_and_select_random(self):
         WebDriverWait(self.driver, 10).until(
-            ec.presence_of_all_elements_located(loc.IMAGE_LINKS)
-        )
+            ec.presence_of_all_elements_located(loc.IMAGE_LINKS))
         self.driver.execute_script("window.scrollBy(0, 500);")
         images = self.driver.find_elements(By.XPATH, '//a[@itemprop="contentUrl"]')
         random_index = random.randint(5, len(images))
@@ -135,8 +134,7 @@ class PhotoPage(BasePage):
     @allure.step("Wait for images and select a random one")
     def wait_for_images_select_and_click(self):
         WebDriverWait(self.driver, 10).until(
-            ec.presence_of_all_elements_located((By.XPATH, '//a[@itemprop="contentUrl"]'))
-        )
+            ec.presence_of_all_elements_located((By.XPATH, '//a[@itemprop="contentUrl"]')))
         images = self.driver.find_elements(*loc.IMAGE_LINKS)
         random_index = random.randint(5, len(images))
         image = WebDriverWait(self.driver, 10).until(
@@ -156,4 +154,3 @@ class PhotoPage(BasePage):
             ec.element_to_be_clickable(loc.PINTEREST_SHARE_BUTTON))
         pinterest_button.click()
         assert 'pinterest' in self.driver.current_url, "The current URL does not contain 'pinterest'"
-
