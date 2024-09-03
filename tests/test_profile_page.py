@@ -1,4 +1,5 @@
 from SiteTesterSelenium.conftest import save_cookies
+from SiteTesterSelenium.tests.data import search_data_for_tests
 
 
 def test_update_email_with_invalid_value(home_page, profile_page, setup):
@@ -22,8 +23,7 @@ def test_max_length_user_last_name(home_page, profile_page, setup):
     home_page.navigate_to_account_page()
     home_page.click_account_link()
     profile_page.update_email_with_invalid_value(save_cookies)
-    max_length = 1000
-    profile_page.update_last_name_with_long_string(max_length)
+    profile_page.update_last_name_with_long_string(search_data_for_tests.max_length)
 
 
 def test_display_message_button_on_profile(home_page, profile_page, setup):
@@ -37,7 +37,7 @@ def test_update_username_with_invalid_value(home_page, profile_page, setup):
     home_page.open()
     home_page.navigate_to_account_page()
     home_page.click_account_link()
-    profile_page.update_username_with_invalid_value('234.')
+    profile_page.update_username_with_invalid_value(search_data_for_tests.invalid_value)
 
 
 def test_profile_image_upload(home_page, profile_page, setup):
@@ -61,8 +61,7 @@ def test_interests_tags_input(home_page, profile_page, setup):
     home_page.open()
     home_page.navigate_to_account_page()
     home_page.click_account_link()
-    hobbies = ['Reading', 'Photography', 'Hiking', 'Cooking', 'Painting', 'Cycling', 'Gardening', 'Writing']
-    profile_page.add_hobbies(hobbies)
+    profile_page.add_hobbies(search_data_for_tests.hobbies)
     profile_page.wait_and_click_update_account_button()
     profile_page.verify_number_of_added_tags(5)
     profile_page.wait_and_click_update_account_button()
@@ -74,8 +73,7 @@ def test_no_duplicate_interests(home_page, profile_page, setup):
     home_page.click_account_link()
     profile_page.update_email_with_invalid_value(save_cookies)
     profile_page.remove_five_tags()
-    hobbies = ['Photography', 'Photography']
-    profile_page.add_hobbies(hobbies)
+    profile_page.add_hobbies(search_data_for_tests.duplicate_hobbies)
     profile_page.verify_tag_input_field_invalid_for_duplicates()
 
 
@@ -84,8 +82,8 @@ def test_location_input_length_boundaries(home_page, profile_page, setup):
     home_page.navigate_to_account_page()
     home_page.click_account_link()
     profile_page.update_email_with_invalid_value(save_cookies)
-    profile_page.set_user_location("L" * 255)
-    profile_page.verify_location_value("New York")
+    profile_page.set_user_location(search_data_for_tests.input_length)
+    profile_page.verify_location_value(search_data_for_tests.location_value)
 
 
 def test_unlike_image(home_page, profile_page, setup):

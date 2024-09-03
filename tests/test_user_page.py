@@ -1,6 +1,9 @@
+from SiteTesterSelenium.tests.data import search_data_for_tests
+
+
 def test_user_follow_functionality(home_page, user_page, search_page, setup):
     home_page.open()
-    search_page.search_for_images('chips')
+    search_page.search_for_images(search_data_for_tests.search_images_words_different_format)
     user_page.navigate_to_users_page()
     user_page.select_random_user_profile()
     user_page.follow_user()
@@ -9,10 +12,9 @@ def test_user_follow_functionality(home_page, user_page, search_page, setup):
 
 def test_email_delivery(home_page, user_page, search_page, setup):
     home_page.open()
-    search_page.search_for_images('apple')
+    search_page.search_for_images(search_data_for_tests.search_images_words_different_format)
     user_page.navigate_to_users_page()
     user_page.select_random_user_profile()
     user_page.click_message_button()
-    message = 'Hello!' * 200
-    user_page.enter_message_in_textarea(message)
+    user_page.enter_message_in_textarea(search_data_for_tests.message)
     user_page.verify_message_length()

@@ -1,0 +1,11 @@
+search_input = 'Nature'
+search_language_text = 'Fotos'
+max_length = 1000
+invalid_value = '234.'
+hobbies = ['Reading', 'Photography', 'Hiking', 'Cooking', 'Painting', 'Cycling', 'Gardening', 'Writing']
+duplicate_hobbies = ['Photography', 'Photography']
+input_length = "L" * 255
+location_value = 'New York'
+search_images_words = 'cookies'
+search_images_words_different_format = 'chips'
+message = 'Hello!' * 200
