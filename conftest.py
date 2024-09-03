@@ -48,8 +48,10 @@ def setup(driver):
         driver.refresh()
 
     else:
-        driver.find_element(By.CSS_SELECTOR, '[name="email"]').send_keys(os.getenv("EMAIL"))
-        driver.find_element(By.CSS_SELECTOR, '[name="password"]').send_keys(os.getenv("PASSWORD"))
+        email = os.getenv("EMAIL", "doe690594@gmail.com")  # set default email for github actions
+        password = os.getenv("PASSWORD", "D47BGWR3mL#Ldxi")  # set default password for github actions
+        driver.find_element(By.CSS_SELECTOR, '[name="email"]').send_keys(email)
+        driver.find_element(By.CSS_SELECTOR, '[name="password"]').send_keys(password)
         driver.find_element(By.CSS_SELECTOR, '[value="Login"]').click()
         save_cookies(driver)
 
