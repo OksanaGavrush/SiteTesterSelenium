@@ -9,7 +9,7 @@ class HomePageLocators:
     LIKE_BUTTON = By.CSS_SELECTOR, '.ztgo2 svg[class="O2bBF"]'
     BUTTON_UNLIKE = (By.CSS_SELECTOR, 'button[title="Unlike this image"]')
     SHARE_BUTTON_TEXT = (By.XPATH, '//span[text()="Share"]')
-    COPY_LINK_BUTTON_TEXT = (By.XPATH, "//button[.//span[contains(text(), 'Copy link')]]")
+    COPY_LINK_BUTTON_TEXT = (By.XPATH, '//span[text()="Copy link"]')
     BURGER_MENU_BUTTON = (By.XPATH, '(//button[@role="button"])[4]')
     LANGUAGE_SELECTOR = (By.CSS_SELECTOR, '[title="Select your language"]')
     SPANISH_LANGUAGE_OPTION = (By.XPATH, '(//*[@lang="es-XM"])[3]')

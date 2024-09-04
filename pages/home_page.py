@@ -33,6 +33,8 @@ class HomePage(BasePage):
     @allure.step("Like the image")
     def like_the_image(self):
         button_like = self.find(loc.LIKE_BUTTON_SELECTOR)
+        WebDriverWait(self.driver, 10).until(ec.element_to_be_clickable
+                                             (loc.LIKE_BUTTON))
         like_button = self.find(loc.LIKE_BUTTON)
         like_button.click()
         button_unlike = self.find(loc.BUTTON_UNLIKE)
@@ -41,6 +43,8 @@ class HomePage(BasePage):
 
     @allure.step("Click the share button")
     def click_share_button(self):
+        WebDriverWait(self.driver, 10).until(
+            ec.visibility_of_element_located(loc.SHARE_BUTTON_TEXT))
         self.find(loc.SHARE_BUTTON_TEXT).click()
         copy_link = WebDriverWait(self.driver, 10).until(
             ec.element_to_be_clickable(loc.COPY_LINK_BUTTON_TEXT))
@@ -87,7 +91,8 @@ class HomePage(BasePage):
 
     @allure.step("Verify scroll left button is displayed")
     def verify_scroll_left_button(self):
-        left_button = WebDriverWait(self.driver, 10).until(ec.visibility_of_element_located(loc.SCROLL_LEFT_BUTTON))
+        left_button = (WebDriverWait(self.driver, 10).until
+                       (ec.visibility_of_element_located(loc.SCROLL_LEFT_BUTTON)))
         assert left_button.is_displayed(), "Scroll left button is not displayed"
 
     @allure.step("Verify scroll right button is displayed")

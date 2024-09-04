@@ -252,9 +252,13 @@ class ProfilePage(BasePage):
 
     @allure.step("Deleting a collection")
     def delete_collection(self, collections_before):
+        WebDriverWait(self.driver, 10).until(
+            ec.element_to_be_clickable(loc.EDIT_COLLECTION_BUTTON_SELECTOR)).click()
+        WebDriverWait(self.driver, 10).until(
+            ec.element_to_be_clickable(loc.DELETE_COLLECTION_BUTTON_SELECTOR)).click()
         WebDriverWait(self.driver, 10).until(ec.element_to_be_clickable
-                                             (loc.EDIT_COLLECTION_BUTTON_SELECTOR)).click()
-        self.driver.find_element(*loc.DELETE_COLLECTION_BUTTON_SELECTOR).click()
-        self.driver.find_element(*loc.CONFIRM_DELETE_BUTTON_SELECTOR).click()
+                                             (loc.CONFIRM_DELETE_BUTTON_SELECTOR)).click()
+        WebDriverWait(self.driver, 10).until(
+            lambda driver: len(collections_before) > len(self.get_collections()))
         collections_after_delete = self.get_collections()
         assert len(collections_before) > len(collections_after_delete), "Collection was not deleted"
