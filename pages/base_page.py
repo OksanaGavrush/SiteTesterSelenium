@@ -1,4 +1,5 @@
 import allure
+
 from selenium.webdriver.remote.webdriver import WebDriver
 from SiteTesterSelenium.pages.locators.locators import HomePageLocators as loc
 
