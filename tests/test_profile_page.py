@@ -1,5 +1,5 @@
 import pytest
-from SiteTesterSelenium.conftest import save_cookies
+from SiteTesterSelenium.utils.helpers import save_cookies, setup
 from SiteTesterSelenium.tests.data import search_data_for_tests
 
 
@@ -8,7 +8,8 @@ def test_update_email_with_invalid_value(home_page, profile_page, setup):
     home_page.open()
     home_page.navigate_to_account_page()
     home_page.click_account_link()
-    profile_page.update_email_with_invalid_value(save_cookies)
+    profile_page.update_email_with_invalid_value("invalid-email")
+    profile_page.verify_url_unchanged_and_save_cookies(save_cookies)
 
 
 @pytest.mark.regression
@@ -16,7 +17,8 @@ def test_update_user_name_profile(home_page, profile_page, setup):
     home_page.open()
     home_page.navigate_to_account_page()
     home_page.click_account_link()
-    profile_page.update_email_with_invalid_value(save_cookies)
+    profile_page.update_email_with_invalid_value("invalid-email")
+    profile_page.verify_url_unchanged_and_save_cookies(save_cookies)
     new_name = profile_page.update_first_name()
     profile_page.verify_updated_first_name(new_name)
 
@@ -26,7 +28,8 @@ def test_max_length_user_last_name(home_page, profile_page, setup):
     home_page.open()
     home_page.navigate_to_account_page()
     home_page.click_account_link()
-    profile_page.update_email_with_invalid_value(save_cookies)
+    profile_page.update_email_with_invalid_value("invalid-email")
+    profile_page.verify_url_unchanged_and_save_cookies(save_cookies)
     profile_page.update_last_name_with_long_string(search_data_for_tests.max_length)
 
 
@@ -113,6 +116,14 @@ def test_character_count_limit(home_page, profile_page, setup):
     home_page.navigate_to_account_page()
     home_page.click_account_link()
     profile_page.verify_bio_textarea_character_limit()
+
+
+@pytest.mark.regression
+def test_exceeded_character_limit_error_display(home_page, profile_page, setup):
+    home_page.open()
+    home_page.navigate_to_account_page()
+    home_page.click_account_link()
+    profile_page.verify_error_on_character_limit_exceeded()
 
 
 @pytest.mark.regression

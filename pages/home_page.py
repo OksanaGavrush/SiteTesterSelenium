@@ -36,10 +36,13 @@ class HomePage(BasePage):
 
     @allure.step("Like the image")
     def like_the_image(self):
-        button_like = self.find(loc.LIKE_BUTTON_SELECTOR)
         WebDriverWait(self.driver, 10).until(ec.element_to_be_clickable(loc.LIKE_BUTTON))
         like_button = self.find(loc.LIKE_BUTTON)
         like_button.click()
+
+    @allure.step("Verify the image was successfully liked")
+    def verify_like_successful(self):
+        button_like = self.find(loc.LIKE_BUTTON_SELECTOR)
         button_unlike = self.find(loc.BUTTON_UNLIKE)
         assert button_like.get_attribute('title') != button_unlike.get_attribute('title'), \
             "The image was not successfully liked."
@@ -48,16 +51,16 @@ class HomePage(BasePage):
     def click_share_button(self):
         WebDriverWait(self.driver, 10).until(ec.visibility_of_element_located(loc.SHARE_BUTTON_TEXT))
         self.find(loc.SHARE_BUTTON_TEXT).click()
+
+    @allure.step("Verify the link was copied successfully")
+    def verify_link_share_button_copied(self):
         copy_link = WebDriverWait(self.driver, 10).until(ec.element_to_be_clickable(loc.COPY_LINK_BUTTON_TEXT))
         copy_link.click()
         assert copy_link.text == 'Copied!', "The link was not copied successfully."
 
-    @allure.step("Wait for the burger menu to be visible")
-    def wait_for_burger_menu(self):
-        WebDriverWait(self.driver, 10).until(ec.visibility_of_element_located(loc.BURGER_MENU_BUTTON))
-
     @allure.step("Click the burger menu")
-    def click_burger_menu(self):
+    def wait_and_click_burger_menu(self):
+        WebDriverWait(self.driver, 10).until(ec.visibility_of_element_located(loc.BURGER_MENU_BUTTON))
         click_burger_button = self.find(loc.BURGER_MENU_BUTTON)
         click_burger_button.click()
 
@@ -120,8 +123,7 @@ class HomePage(BasePage):
 
     @allure.step("Click on the 'Highlights' button")
     def click_highlights_button(self):
-        activity_button = WebDriverWait(self.driver, 10).until(
-            ec.presence_of_element_located(loc.ACTIVITY_BUTTON)
-        )
-        assert activity_button is not None, "Activity button should be present before clicking the Highlights button"
-        WebDriverWait(self.driver, 10).until(ec.element_to_be_clickable(loc.HIGHLIGHTS_BUTTON)).click()
+        self.driver.maximize_window()
+        WebDriverWait(self.driver, 10).until(ec.presence_of_element_located(loc.ACTIVITY_BUTTON))
+        text_in_activity_button = self.driver.find_element(By.CSS_SELECTOR, '.ANdyZ').text
+        assert text_in_activity_button == 'Activity associated with your account will appear here.'

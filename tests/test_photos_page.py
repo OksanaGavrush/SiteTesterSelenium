@@ -1,5 +1,6 @@
 import pytest
 from SiteTesterSelenium.tests.data import search_data_for_tests
+from SiteTesterSelenium.utils.helpers import setup
 
 
 @pytest.mark.regression

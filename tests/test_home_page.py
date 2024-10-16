@@ -1,12 +1,13 @@
 import pytest
 from SiteTesterSelenium.tests.data import search_data_for_tests
+from SiteTesterSelenium.utils.helpers import setup
 
 
 @pytest.mark.smoke
 def test_search_input_functionality(home_page, search_page, setup):
     home_page.open()
     home_page.search(search_data_for_tests.search_input)
-    search_page.verify_results()
+    search_page.verify_results_not_empty()
     search_page.verify_url(search_data_for_tests.search_input)
 
 
@@ -15,6 +16,7 @@ def test_click_random_heart_icon(home_page, setup):
     home_page.open()
     home_page.clicking_random_image()
     home_page.like_the_image()
+    home_page.verify_like_successful()
 
 
 @pytest.mark.smoke
@@ -22,13 +24,13 @@ def test_link_copy_check(home_page, setup):
     home_page.open()
     home_page.clicking_random_image()
     home_page.click_share_button()
+    home_page.verify_link_share_button_copied()
 
 
 @pytest.mark.smoke
 def test_burger_menu_opens(home_page, setup):
     home_page.open()
-    home_page.wait_for_burger_menu()
-    home_page.click_burger_menu()
+    home_page.wait_and_click_burger_menu()
     home_page.verify_burger_menu_opened()
 
 

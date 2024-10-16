@@ -57,12 +57,14 @@ class ProfilePage(BasePage):
             "The input length does not match the expected length, which might indicate a max length limit."
 
     @allure.step("Update email with an invalid value and verify URL does not change")
-    def update_email_with_invalid_value(self, save_cookies_func):
+    def update_email_with_invalid_value(self, email):
         email_input = WebDriverWait(self.driver, 10).until(
             ec.visibility_of_element_located(loc.EMAIL_INPUT)
         )
         email_input.clear()
-        email_input.send_keys("invalid-email")
+        email_input.send_keys(email)
+
+    def verify_url_unchanged_and_save_cookies(self, save_cookies_func):
         initial_url = self.driver.current_url
         self.find(loc.UPDATE_ACCOUNT_BUTTON).click()
         save_cookies_func(self.driver)
@@ -238,12 +240,24 @@ class ProfilePage(BasePage):
             ec.element_to_be_clickable(loc.BIO_TEXTAREA_SELECTOR))
         find_max_len = self.find(loc.BIO_TEXTAREA_SELECTOR)
         max_chars = int(find_max_len.get_attribute('data-character-count'))
-        input_text = 'A' * (max_chars + 50)
+        input_text = 'A' * max_chars
+        textarea.send_keys(input_text)
+        actual_input = textarea.get_attribute('value')
+        actual_length = len(actual_input)
+        assert actual_length == max_chars, f"Expected {max_chars} characters, but got {actual_length}"
+
+    def verify_error_on_character_limit_exceeded(self):
+        textarea = WebDriverWait(self.driver, 10).until(
+            ec.element_to_be_clickable(loc.BIO_TEXTAREA_SELECTOR))
+        find_max_len = self.find(loc.BIO_TEXTAREA_SELECTOR)
+        max_chars = int(find_max_len.get_attribute('data-character-count'))
+        input_text = 'A' * (max_chars + 1)
         textarea.send_keys(input_text)
         error_div = WebDriverWait(self.driver, 10).until(
             ec.presence_of_element_located(loc.CHARACTER_COUNT_ERROR_DIV)
         )
-        assert error_div is not None, "Error class was not added to the character count div."
+        error_text = error_div.text
+        assert '-' in error_text, "Error text should contain a negative number indicating character limit exceeded"
 
     @allure.step("Clicking on user navigation link for collections")
     def click_user_nav_link(self):

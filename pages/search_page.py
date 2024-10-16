@@ -11,7 +11,7 @@ from SiteTesterSelenium.pages.locators.locators import SearchPageLocators as loc
 class SearchPage(BasePage):
 
     @allure.step("Verify search results are displayed")
-    def verify_results(self):
+    def verify_results_not_empty(self):
         results = self.driver.find_elements(By.CSS_SELECTOR, 'img')
         assert len(results) > 0, "No search results found."
 
